@@ -1,12 +1,14 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import to_timestamp
+from config.Config import Config
+
 
 def init_spark_session():
     spark = SparkSession \
         .builder \
-        .appName("test") \
-        .config("spark.driver.memory", "4g") \
-        .config("spark.executor.memory", "4g") \
+        .appName(Config.app_name) \
+        .config("spark.driver.memory", Config.driver_memory) \
+        .config("spark.executor.memory", Config.executor_memory) \
         .getOrCreate()
     return spark
 
